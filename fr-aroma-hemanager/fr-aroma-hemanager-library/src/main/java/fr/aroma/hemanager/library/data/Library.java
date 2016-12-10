@@ -11,6 +11,11 @@ import java.util.List;
  * @version $Id
  */
 public class Library {
+	
+	/**
+	 * Library identifier
+	 */
+	private String libraryIdentifier;
 
 	/**
 	 * Collection of HE
@@ -55,6 +60,20 @@ public class Library {
 	 */
 	public void setHvItems(List<HvItem> hvItems) {
 		this.hvItems = hvItems;
+	}
+
+	/**
+	 * @return the libraryIdentifier
+	 */
+	public String getLibraryIdentifier() {
+		return libraryIdentifier;
+	}
+
+	/**
+	 * @param libraryIdentifier the libraryIdentifier to set
+	 */
+	public void setLibraryIdentifier(String libraryIdentifier) {
+		this.libraryIdentifier = libraryIdentifier;
 	}
 
 }
