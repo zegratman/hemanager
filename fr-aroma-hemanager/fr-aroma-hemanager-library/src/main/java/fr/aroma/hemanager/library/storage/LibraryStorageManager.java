@@ -153,4 +153,43 @@ public interface LibraryStorageManager {
 	 */
 	public boolean deleteToxicity(String library, String toxicity) throws LibraryStorageManagerException;
 	
+	/*--------> PROPERTY METHODS <---------*/
+	
+	/**
+	 * Create a property inside the library.
+	 * @param library the library
+	 * @param property the property to create
+	 * @throws LibraryStorageManagerException if a problem occurs during property creation.
+	 */
+	public void createProperty(String library, String property) throws LibraryStorageManagerException;
+	
+	/**
+	 * Get all the properties existing inside the library.
+	 * @param library the library.
+	 * @return all the properties inside the library.
+	 * @throws LibraryStorageManagerException if the library requested does not exist.
+	 */
+	public List<String> readProperties(String library) throws LibraryStorageManagerException;
+	
+	/**
+	 * Update a property in the library.
+	 * @param library the library
+	 * @param oldProperty the old property name
+	 * @param newProperty the new property name
+	 * @return true if the property is updated
+	 * @throws LibraryStorageManagerException if a problem occurs.
+	 */
+	public boolean updateProperty(String library, String oldProperty, String newProperty) throws LibraryStorageManagerException;
+	
+	/**
+	 * Delete a property inside the library.
+	 * @param library the library
+	 * @param property the property to delete
+	 * @return true if the property has been deleted
+	 * @throws LibraryStorageManagerException if a problem occurs during deletion.
+	 */
+	public boolean deleteProperty(String library, String property) throws LibraryStorageManagerException;
+	
+	
+	
 }
