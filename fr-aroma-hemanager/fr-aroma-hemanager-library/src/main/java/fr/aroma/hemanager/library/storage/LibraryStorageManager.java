@@ -6,6 +6,7 @@ package fr.aroma.hemanager.library.storage;
 import java.util.List;
 
 import fr.aroma.hemanager.library.data.HeItem;
+import fr.aroma.hemanager.library.data.HeProperty;
 import fr.aroma.hemanager.library.data.Library;
 
 /**
@@ -190,6 +191,64 @@ public interface LibraryStorageManager {
 	 */
 	public boolean deleteProperty(String library, String property) throws LibraryStorageManagerException;
 	
+	/**
+	 * Method to add a property inside a HE
+	 * @param library the library
+	 * @param heIdentifier the HE identifier
+	 * @param property the property to add
+	 * @throws LibraryStorageManagerException if a problem occurs
+	 */
+	public void addPropertyToHe(String library, String heIdentifier, HeProperty property) throws LibraryStorageManagerException;
+	
+	/**
+	 * Method to get the properties of a HE
+	 * @param library the library
+	 * @param heIdentifier the HE identifier
+	 * @return the list of properties associated
+	 * @throws LibraryStorageManagerException if the library request or the HE does not exist.
+	 */
+	public List<HeProperty> getPropertiesFromHe(String library, String heIdentifier) throws LibraryStorageManagerException;
+	
+	/**
+	 * Method to update a property in HE
+	 * @param library the library
+	 * @param heIdentifier the HE identifier
+	 * @param oldProperty the property to update
+	 * @param newProperty the new property
+	 * @return true if the update is effective
+	 * @throws LibraryStorageManagerException if a problem occurs during update/
+	 */
+	public boolean updatePropertyInHe(String library, String heIdentifier, HeProperty oldProperty, HeProperty newProperty) throws LibraryStorageManagerException;
+	
+	/**
+	 * Method to delete a property associated to a HE.
+	 * @param library the library
+	 * @param heIdentifier the HE identifier
+	 * @param property the property to delete
+	 * @return true if the property is correctly deleted
+	 */
+	public boolean deletePropertyInHe(String library, String heIdentifier, String property) throws LibraryStorageManagerException;
+	
+	/**
+	 * Get the efficiency associated to a property of a HE
+	 * @param library the library
+	 * @param heIdentifier the HE identifier
+	 * @param property the HE property
+	 * @return the efficiency
+	 * @throws LibraryStorageManagerException if retrieval problem occurs
+	 */
+	public Integer getPropertyEfficiency(String library, String heIdentifier, String property) throws LibraryStorageManagerException;
+	
+	/**
+	 * Update the efficiency of a property in a HE
+	 * @param library the library
+	 * @param heIdentifier the HE identifier
+	 * @param propertyIdentifier the property identifier (name)
+	 * @param efficiency the new efficiency value
+	 * @return true if the update went correctly
+	 * @throws LibraryStorageManagerException if a critical problem occurs during update.
+	 */
+	public boolean updatePropertyEfficiencyInHe(String library, String heIdentifier, String propertyIdentifier, Integer efficiency) throws LibraryStorageManagerException;
 	
 	
 }
