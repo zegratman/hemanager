@@ -29,6 +29,16 @@ class Propriete(models.Model):
         return self.nom
 
 
+class ContreIndication(models.Model):
+    """
+    ContreIndication
+    """
+    nom = models.CharField(max_length=255, primary_key=True, verbose_name="Nom")
+    description = models.TextField(blank=True, verbose_name="Description")
+
+    def __str__(self):
+        return self.nom
+
 class HuileEssentielle(models.Model):
     """
     Huile essentielle
@@ -92,3 +102,13 @@ class ProprieteEffective(models.Model):
 
     def __str__(self):
         return self.nom_prop.__str__() + " [" + self.efficacite.__str__() + "]"
+
+class ContreIndicationHE(models.Model):
+    """
+    Contre indication d'une huile essentielle
+    """
+    nom_contre_indication = models.ForeignKey(ContreIndication, on_delete=models.CASCADE, related_name="+")
+    nom_he = models.ForeignKey(HuileEssentielle, on_delete=models.CASCADE, related_name="+")
+
+    def __str__(self):
+        return self.nom_he.__str__() + " > " + self.nom_contre_indication.__str__()
