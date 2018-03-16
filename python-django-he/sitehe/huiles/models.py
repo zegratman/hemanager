@@ -52,6 +52,17 @@ class Source(models.Model):
         return self.nom + " (" + self.auteur + ")[" + self.year + "]"
 
 
+class Maladie(models.Model):
+    """
+    Maladie
+    """
+    nom = models.CharField(max_length=255, primary_key=True, verbose_name="Nom")
+    description = models.TextField(blank=True, verbose_name="Description")
+
+    def __str__(self):
+        return self.nom
+
+
 class HuileEssentielle(models.Model):
     """
     Huile essentielle
@@ -138,3 +149,37 @@ class SourceHE(models.Model):
 
     def __str__(self):
         return self.nom_he.__str__() + " > " + self.nom_source.__str__()
+
+
+class Caracteriologie(models.Model):
+    """
+    ContreIndication
+    """
+    identifier = models.IntegerField(verbose_name="ID", primary_key=True, auto_created=True)
+    description = models.TextField(blank=True, verbose_name="Description")
+    huile_essentielle = models.ForeignKey(HuileEssentielle, on_delete=models.CASCADE, related_name="+")
+
+    def __str__(self):
+        return self.identifier
+
+
+class ProprieteMaladie(models.Model):
+    """
+    proprietes associées à une maladie
+    """
+    propriete = models.ForeignKey(Propriete, on_delete=models.CASCADE, related_name="+")
+    maladie = models.ForeignKey(Maladie, on_delete=models.CASCADE, related_name="+")
+
+    def __str__(self):
+        return self.maladie.__str__() + " > " + self.propriete.__str__()
+
+
+class ContreIndicationMaladie(models.Model):
+    """
+    Contre-indications associées à une maladie
+    """
+    contre_indication = models.ForeignKey(ContreIndication, on_delete=models.CASCADE, related_name="+")
+    maladie = models.ForeignKey(Maladie, on_delete=models.CASCADE, related_name="+")
+
+    def __str__(self):
+        return self.maladie.__str__() + " > " + self.contre_indication.__str__()
