@@ -39,6 +39,19 @@ class ContreIndication(models.Model):
     def __str__(self):
         return self.nom
 
+
+class Source(models.Model):
+    """
+    Source
+    """
+    nom = models.CharField(max_length=255, primary_key=True, verbose_name="Nom")
+    auteur = models.CharField(max_length=255, verbose_name="Auteur")
+    year = models.IntegerField(verbose_name="Année")
+
+    def __str__(self):
+        return self.nom + " (" + self.auteur + ")[" + self.year + "]"
+
+
 class HuileEssentielle(models.Model):
     """
     Huile essentielle
@@ -103,6 +116,7 @@ class ProprieteEffective(models.Model):
     def __str__(self):
         return self.nom_prop.__str__() + " [" + self.efficacite.__str__() + "]"
 
+
 class ContreIndicationHE(models.Model):
     """
     Contre indication d'une huile essentielle
@@ -112,3 +126,15 @@ class ContreIndicationHE(models.Model):
 
     def __str__(self):
         return self.nom_he.__str__() + " > " + self.nom_contre_indication.__str__()
+
+
+class SourceHE(models.Model):
+    """
+    Source associée à une huile essentielle
+    """
+    nom_source = models.ForeignKey(Source, on_delete=models.CASCADE, related_name="+")
+    nom_he = models.ForeignKey(HuileEssentielle, on_delete=models.CASCADE, related_name="+")
+    pages = models.CharField(max_length=255, verbose_name="Pages")
+
+    def __str__(self):
+        return self.nom_he.__str__() + " > " + self.nom_source.__str__()

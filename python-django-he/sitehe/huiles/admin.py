@@ -2,8 +2,7 @@
 from __future__ import unicode_literals
 
 from django.contrib import admin
-from models import Famille, Propriete, ProprieteEffective, ContreIndicationHE, ContreIndication
-from models import HuileEssentielle
+from models import *
 
 
 # Register your models here.
@@ -25,14 +24,23 @@ class ContreIndicationInLine(admin.StackedInline):
     extra = 1
 
 
+class SourceInLine(admin.StackedInline):
+    """
+    Ajout de source en ligne
+    """
+    model = SourceHE
+    extra = 1
+
+
 class HuileEssentielleAdmin(admin.ModelAdmin):
     """
     Admin of huile essentielle
     """
-    inlines = [ProprieteEffectiveInLine, ContreIndicationInLine]
+    inlines = [ProprieteEffectiveInLine, ContreIndicationInLine, SourceInLine]
 
 
 admin.site.register(Famille)
 admin.site.register(Propriete)
 admin.site.register(ContreIndication)
+admin.site.register(Source)
 admin.site.register(HuileEssentielle, HuileEssentielleAdmin)
