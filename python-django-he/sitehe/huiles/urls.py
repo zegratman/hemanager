@@ -15,8 +15,9 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+import views
 
 urlpatterns = [
-    url(r'^huiles/', include('huiles.urls')),
-    url(r'^admin/', admin.site.urls),
+    url(r'^$', views.he_view, name='he_view'),
+    url(r'^(?P<he_nom>[a-zA-Z\s]+)/$', views.he_detail, name='he_detail'),
 ]

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste Huiles</title>
+</head>
+<body>
+
+{% if he_list %}
+    <ul>
+    {% for he in he_list %}
+        <li><a href="/huiles/{{ he.nom }}/">{{ he.nom }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Pas d'huiles essentielles disponibles.</p>
+{% endif %}
+
+</body>
+</html>
+
