@@ -13,6 +13,7 @@ class ProprieteEffectiveInLine(admin.StackedInline):
     """
     model = ProprieteEffective
     extra = 1
+    ordering = ['nom_prop']
 
 
 class ContreIndicationInLine(admin.StackedInline):

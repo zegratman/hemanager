@@ -34,6 +34,9 @@ class Propriete(models.Model):
     def __str__(self):
         return self.__unicode__()
 
+    class Meta:
+        ordering = ['nom']
+
 
 class ContreIndication(models.Model):
     """
@@ -137,7 +140,7 @@ class ProprieteEffective(models.Model):
         ("++", "++"),
         ("+++", "+++"),
         ("++++", "++++"),
-        ("+++++", "++++++"),
+        ("+++++", "+++++"),
         ("tout ou rien", "tout ou rien")
     )
     efficacite = models.CharField(max_length=31, verbose_name="Efficacité", choices=efficacite_possible)
@@ -147,6 +150,8 @@ class ProprieteEffective(models.Model):
 
     def __str__(self):
         return self.__unicode__()
+
+
 
 
 class ContreIndicationHE(models.Model):
