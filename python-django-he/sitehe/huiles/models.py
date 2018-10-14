@@ -14,8 +14,11 @@ class Famille(models.Model):
     nom = models.CharField(max_length=255, primary_key=True, verbose_name="Famille")
     description = models.TextField(blank=True, verbose_name="Description", null=True)
 
-    def __str__(self):
+    def __unicode__(self):
         return unicode(self.nom)
+
+    def __str__(self):
+        return self.__unicode__()
 
 
 class Propriete(models.Model):
@@ -25,8 +28,11 @@ class Propriete(models.Model):
     nom = models.CharField(max_length=255, primary_key=True, verbose_name="Propriété")
     description = models.TextField(blank=True, verbose_name="Description")
 
-    def __str__(self):
+    def __unicode__(self):
         return unicode(self.nom)
+
+    def __str__(self):
+        return self.__unicode__()
 
 
 class ContreIndication(models.Model):
@@ -36,8 +42,11 @@ class ContreIndication(models.Model):
     nom = models.CharField(max_length=255, primary_key=True, verbose_name="Nom")
     description = models.TextField(blank=True, verbose_name="Description")
 
-    def __str__(self):
+    def __unicode__(self):
         return unicode(self.nom)
+
+    def __str__(self):
+        return self.__unicode__()
 
 
 class Source(models.Model):
@@ -48,8 +57,11 @@ class Source(models.Model):
     auteur = models.CharField(max_length=255, verbose_name="Auteur")
     year = models.IntegerField(verbose_name="Année")
 
-    def __str__(self):
+    def __unicode__(self):
         return unicode(self.nom) + " (" + unicode(self.auteur) + ")[" + unicode(self.year) + "]"
+
+    def __str__(self):
+        return self.__unicode__()
 
 
 class Maladie(models.Model):
@@ -59,8 +71,11 @@ class Maladie(models.Model):
     nom = models.CharField(max_length=255, primary_key=True, verbose_name="Nom")
     description = models.TextField(blank=True, verbose_name="Description")
 
-    def __str__(self):
+    def __unicode__(self):
         return unicode(self.nom)
+
+    def __str__(self):
+        return self.__unicode__()
 
 
 class HuileEssentielle(models.Model):
@@ -104,8 +119,11 @@ class HuileEssentielle(models.Model):
 
     notes = models.TextField(verbose_name="Notes", blank=True)
 
-    def __str__(self):
+    def __unicode__(self):
         return unicode(self.nom)
+
+    def __str__(self):
+        return self.__unicode__()
 
 
 class ProprieteEffective(models.Model):
@@ -124,8 +142,11 @@ class ProprieteEffective(models.Model):
     )
     efficacite = models.CharField(max_length=31, verbose_name="Efficacité", choices=efficacite_possible)
 
-    def __str__(self):
+    def __unicode__(self):
         return unicode(self.nom_prop) + " [" + unicode(self.efficacite) + "]"
+
+    def __str__(self):
+        return self.__unicode__()
 
 
 class ContreIndicationHE(models.Model):
@@ -135,8 +156,11 @@ class ContreIndicationHE(models.Model):
     nom_contre_indication = models.ForeignKey(ContreIndication, on_delete=models.CASCADE, related_name="+")
     nom_he = models.ForeignKey(HuileEssentielle, on_delete=models.CASCADE, related_name="+")
 
-    def __str__(self):
+    def __unicode__(self):
         return unicode(self.nom_h) + " > " + unicode(self.nom_contre_indication)
+
+    def __str__(self):
+        return self.__unicode__()
 
 
 class SourceHE(models.Model):
@@ -147,8 +171,11 @@ class SourceHE(models.Model):
     nom_he = models.ForeignKey(HuileEssentielle, on_delete=models.CASCADE, related_name="+")
     pages = models.CharField(max_length=255, verbose_name="Pages")
 
-    def __str__(self):
+    def __unicode__(self):
         return unicode(self.nom_he) + " > " + unicode(self.nom_source)
+
+    def __str__(self):
+        return self.__unicode__()
 
 
 class Caracteriologie(models.Model):
@@ -159,8 +186,11 @@ class Caracteriologie(models.Model):
     description = models.TextField(blank=True, verbose_name="Description")
     huile_essentielle = models.ForeignKey(HuileEssentielle, on_delete=models.CASCADE, related_name="+")
 
-    def __str__(self):
+    def __unicode__(self):
         return unicode(self.identifier)
+
+    def __str__(self):
+        return self.__unicode__()
 
 
 class ProprieteMaladie(models.Model):
@@ -170,8 +200,11 @@ class ProprieteMaladie(models.Model):
     propriete = models.ForeignKey(Propriete, on_delete=models.CASCADE, related_name="+")
     maladie = models.ForeignKey(Maladie, on_delete=models.CASCADE, related_name="+")
 
-    def __str__(self):
+    def __unicode__(self):
         return unicode(self.maladie) + " > " + unicode(self.propriete)
+
+    def __str__(self):
+        return self.__unicode__()
 
 
 class ContreIndicationMaladie(models.Model):
@@ -181,5 +214,8 @@ class ContreIndicationMaladie(models.Model):
     contre_indication = models.ForeignKey(ContreIndication, on_delete=models.CASCADE, related_name="+")
     maladie = models.ForeignKey(Maladie, on_delete=models.CASCADE, related_name="+")
 
-    def __str__(self):
+    def __unicode__(self):
         return unicode(self.maladie) + " > " + unicode(self.contre_indication)
+
+    def __str__(self):
+        return self.__unicode__()
