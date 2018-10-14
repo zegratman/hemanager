@@ -157,7 +157,7 @@ class ContreIndicationHE(models.Model):
     nom_he = models.ForeignKey(HuileEssentielle, on_delete=models.CASCADE, related_name="+")
 
     def __unicode__(self):
-        return unicode(self.nom_h) + " > " + unicode(self.nom_contre_indication)
+        return unicode(self.nom_he) + " > " + unicode(self.nom_contre_indication)
 
     def __str__(self):
         return self.__unicode__()
