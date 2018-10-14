@@ -2,19 +2,38 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Liste Huiles</title>
+    <title>Liste des Huiles Essentielles</title>
+    {% load static %}
+    <link href="{% static "huiles/jquery-ui-1.12.1.custom/jquery-ui.min.css" %}" rel="stylesheet">
+    <script src="{% static "huiles/jquery-ui-1.12.1.custom/external/jquery/jquery.js" %}"></script>
+    <script src="{% static "huiles/jquery-ui-1.12.1.custom/jquery-ui.min.js" %}"></script>
+
+    <script>
+      $( function() {
+    $( "#accordion" ).accordion();
+  } );
+    </script>
+
 </head>
 <body>
 
+<div id="accordion">
 {% if he_list %}
-    <ul>
     {% for he in he_list %}
-        <li><a href="/huiles/{{ he.nom }}/">{{ he.nom }}</a></li>
+        <h3><a href="/huiles/{{ he.nom }}/">{{ he.nom }}</a></h3>
+        <div>
+            <p>
+                {{ he.nom }} / {{ he.nom_alternatif }}
+            </p>
+        </div>
     {% endfor %}
-    </ul>
 {% else %}
     <p>Pas d'huiles essentielles disponibles.</p>
 {% endif %}
+
+</div>
+
+
 
 </body>
 </html>

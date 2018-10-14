@@ -49,7 +49,7 @@ class Source(models.Model):
     year = models.IntegerField(verbose_name="Année")
 
     def __str__(self):
-        return self.nom + " (" + self.auteur + ")[" + self.year + "]"
+        return self.nom + " (" + self.auteur + ")[" + str(self.year) + "]"
 
 
 class Maladie(models.Model):
