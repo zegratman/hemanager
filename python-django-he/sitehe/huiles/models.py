@@ -15,7 +15,7 @@ class Famille(models.Model):
     description = models.TextField(blank=True, verbose_name="Description", null=True)
 
     def __str__(self):
-        return self.nom
+        return unicode(self.nom)
 
 
 class Propriete(models.Model):
@@ -26,7 +26,7 @@ class Propriete(models.Model):
     description = models.TextField(blank=True, verbose_name="Description")
 
     def __str__(self):
-        return self.nom
+        return unicode(self.nom)
 
 
 class ContreIndication(models.Model):
@@ -37,7 +37,7 @@ class ContreIndication(models.Model):
     description = models.TextField(blank=True, verbose_name="Description")
 
     def __str__(self):
-        return self.nom
+        return unicode(self.nom)
 
 
 class Source(models.Model):
@@ -49,7 +49,7 @@ class Source(models.Model):
     year = models.IntegerField(verbose_name="Année")
 
     def __str__(self):
-        return self.nom + " (" + self.auteur + ")[" + str(self.year) + "]"
+        return unicode(self.nom) + " (" + unicode(self.auteur) + ")[" + unicode(self.year) + "]"
 
 
 class Maladie(models.Model):
@@ -60,7 +60,7 @@ class Maladie(models.Model):
     description = models.TextField(blank=True, verbose_name="Description")
 
     def __str__(self):
-        return self.nom
+        return unicode(self.nom)
 
 
 class HuileEssentielle(models.Model):
@@ -105,7 +105,7 @@ class HuileEssentielle(models.Model):
     notes = models.TextField(verbose_name="Notes", blank=True)
 
     def __str__(self):
-        return self.nom
+        return unicode(self.nom)
 
 
 class ProprieteEffective(models.Model):
@@ -125,7 +125,7 @@ class ProprieteEffective(models.Model):
     efficacite = models.CharField(max_length=31, verbose_name="Efficacité", choices=efficacite_possible)
 
     def __str__(self):
-        return self.nom_prop.__str__() + " [" + self.efficacite.__str__() + "]"
+        return unicode(self.nom_prop) + " [" + unicode(self.efficacite) + "]"
 
 
 class ContreIndicationHE(models.Model):
@@ -136,7 +136,7 @@ class ContreIndicationHE(models.Model):
     nom_he = models.ForeignKey(HuileEssentielle, on_delete=models.CASCADE, related_name="+")
 
     def __str__(self):
-        return self.nom_he.__str__() + " > " + self.nom_contre_indication.__str__()
+        return unicode(self.nom_h) + " > " + unicode(self.nom_contre_indication)
 
 
 class SourceHE(models.Model):
@@ -148,7 +148,7 @@ class SourceHE(models.Model):
     pages = models.CharField(max_length=255, verbose_name="Pages")
 
     def __str__(self):
-        return self.nom_he.__str__() + " > " + self.nom_source.__str__()
+        return unicode(self.nom_he) + " > " + unicode(self.nom_source)
 
 
 class Caracteriologie(models.Model):
@@ -160,7 +160,7 @@ class Caracteriologie(models.Model):
     huile_essentielle = models.ForeignKey(HuileEssentielle, on_delete=models.CASCADE, related_name="+")
 
     def __str__(self):
-        return self.identifier
+        return unicode(self.identifier)
 
 
 class ProprieteMaladie(models.Model):
@@ -171,7 +171,7 @@ class ProprieteMaladie(models.Model):
     maladie = models.ForeignKey(Maladie, on_delete=models.CASCADE, related_name="+")
 
     def __str__(self):
-        return self.maladie.__str__() + " > " + self.propriete.__str__()
+        return unicode(self.maladie) + " > " + unicode(self.propriete)
 
 
 class ContreIndicationMaladie(models.Model):
@@ -182,4 +182,4 @@ class ContreIndicationMaladie(models.Model):
     maladie = models.ForeignKey(Maladie, on_delete=models.CASCADE, related_name="+")
 
     def __str__(self):
-        return self.maladie.__str__() + " > " + self.contre_indication.__str__()
+        return unicode(self.maladie) + " > " + unicode(self.contre_indication)
