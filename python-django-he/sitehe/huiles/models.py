@@ -128,6 +128,9 @@ class HuileEssentielle(models.Model):
     def __str__(self):
         return self.__unicode__()
 
+    class Meta:
+        ordering = ['nom']
+
 
 class ProprieteEffective(models.Model):
     """
