@@ -51,6 +51,9 @@ class ContreIndication(models.Model):
     def __str__(self):
         return self.__unicode__()
 
+    class Meta:
+        ordering = ['nom']
+
 
 class Source(models.Model):
     """
