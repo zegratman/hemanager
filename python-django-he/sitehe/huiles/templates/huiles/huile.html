@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Détail Huile</title>
+</head>
+<body>
+
+{% if huile %}
+    <h1>{{huile.nom}}</h1>
+    <p>{{huile.quantite}}</p>
+{% else %}
+    <p>Pas d'huile demandée</p>
+{% endif %}
+
+
+</body>
+</html>
