@@ -3,6 +3,10 @@ jobs:
   build:
     docker:
       - image: circleci/ruby:2.4.1
+    branches:
+      only:
+        - master
+        - develop
     steps:
       - add_ssh_keys:
           fingerprints:
