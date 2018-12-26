@@ -50,7 +50,7 @@
     {% if ci_he_list %}
     <fieldset>
     <legend>Resultats</legend>
-    Total : {{ ci_he_list.length }}
+    Total : {{ ci_he_list|length }}
     <ul>
         {% for ci_he in ci_he_list %}
         <li>{{ ci_he.nom_he }}</li>
