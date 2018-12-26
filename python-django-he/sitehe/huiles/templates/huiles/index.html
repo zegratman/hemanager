@@ -34,6 +34,7 @@
 <div id="he-search">
     <form action="#">
         <fieldset>
+            <legend>Filtres</legend>
             <label for="contre_indic">Contre Indication</label>
             <select name="contre_indic" id="contre_indic">
             {% if ci_list %}
@@ -43,9 +44,20 @@
                  {% endfor %}
             {% endif %}
             </select>
+            <input type="submit" value="Chercher"></input>
         </fieldset>
-        <input type="submit" value="Filtrer"></input>
     </form>
+    {% if ci_he_list %}
+    <fieldset>
+    <legend>Resultats</legend>
+    Total : {{ ci_he_list.length }}
+    <ul>
+        {% for ci_he in ci_he_list %}
+        <li>{{ ci_he.nom_he }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    </fieldset>
 </div>
 
 </div>
