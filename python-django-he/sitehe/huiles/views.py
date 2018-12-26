@@ -3,14 +3,20 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render, get_object_or_404
 
-from models import HuileEssentielle
+from models import HuileEssentielle, ContreIndication
 
 # Create your views here.
 
 
 def he_view(request):
+    """
+    Main view
+    :param request: the request
+    :return:
+    """
     he_list = HuileEssentielle.objects.all()
-    context = {'he_list': he_list}
+    ci_list = ContreIndication.objects.all()
+    context = {'he_list': he_list, 'ci_list': ci_list}
     return render(request, 'huiles/index.html', context)
 
 
