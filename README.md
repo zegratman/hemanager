@@ -13,6 +13,13 @@ https://trello.com/b/cPk3Wm7E/he-manager
 
 ## Historique
 
+- 0.1 :
+  - Fiche détaillée
+  - Recherche HE
+    - Contre-Indication
+    - Propriété
+    - Famille
+
 - v0.1-beta :
   - Onglets liste / recherche
   - Fiches HE
