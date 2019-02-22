@@ -33,21 +33,6 @@ def percentage_validator(value):
         raise ValidationError(gettext_lazy('%(value)s is not a percentage'), params={'value': value})
 
 
-class FamilleEffective(models.Model):
-    """
-    Famille effective
-    """
-    famille = models.ForeignKey(Famille, on_delete=models.CASCADE, blank=False, null=False, verbose_name="Famille",
-                                related_name="+")
-    percentage = models.IntegerField(verbose_name="Pourcentage", validators=[percentage_validator], default=0)
-
-    def __unicode__(self):
-        return unicode(self.famille.verbose_name) + " (" + unicode(self.percentage) + "%)"
-
-    def __str__(self):
-        return self.__unicode__()
-
-
 class Propriete(models.Model):
     """
     Proprietes
@@ -139,17 +124,22 @@ class HuileEssentielle(models.Model):
 
     schema = models.ImageField(verbose_name="Schéma", blank=True)
 
-    famille_1 = models.ForeignKey(FamilleEffective, on_delete=models.CASCADE, blank=False,
-                                  verbose_name="Famille primaire",
+    famille_1 = models.ForeignKey(Famille, on_delete=models.CASCADE, blank=False, verbose_name="Famille primaire",
                                   related_name="+")
-    famille_2 = models.ForeignKey(FamilleEffective, on_delete=models.CASCADE, verbose_name="Famille secondaire", blank=True,
+    famille_2 = models.ForeignKey(Famille, on_delete=models.CASCADE, verbose_name="Famille secondaire", blank=True,
                                   related_name="+", null=True)
-    famille_3 = models.ForeignKey(FamilleEffective, on_delete=models.CASCADE, verbose_name="Famille tertiaire", blank=True,
+    famille_3 = models.ForeignKey(Famille, on_delete=models.CASCADE, verbose_name="Famille tertiaire", blank=True,
                                   related_name="+", null=True)
-    famille_4 = models.ForeignKey(FamilleEffective, on_delete=models.CASCADE, verbose_name="Famille annexe 1", blank=True,
+    famille_4 = models.ForeignKey(Famille, on_delete=models.CASCADE, verbose_name="Famille annexe 1", blank=True,
                                   related_name="+", null=True)
-    famille_5 = models.ForeignKey(FamilleEffective, on_delete=models.CASCADE, verbose_name="Famille annexe 2", blank=True,
+    famille_5 = models.ForeignKey(Famille, on_delete=models.CASCADE, verbose_name="Famille annexe 2", blank=True,
                                   related_name="+", null=True)
+
+    famille_1_pct = models.IntegerField(verbose_name="%", default=0, validators=[percentage_validator])
+    famille_2_pct = models.IntegerField(verbose_name="%", default=0, validators=[percentage_validator])
+    famille_3_pct = models.IntegerField(verbose_name="%", default=0, validators=[percentage_validator])
+    famille_4_pct = models.IntegerField(verbose_name="%", default=0, validators=[percentage_validator])
+    famille_5_pct = models.IntegerField(verbose_name="%", default=0, validators=[percentage_validator])
 
     notes = models.TextField(verbose_name="Notes", blank=True)
 
