@@ -135,11 +135,15 @@ class HuileEssentielle(models.Model):
     famille_5 = models.ForeignKey(Famille, on_delete=models.CASCADE, verbose_name="Famille annexe 2", blank=True,
                                   related_name="+", null=True)
 
-    famille_1_pct = models.IntegerField(verbose_name="%", default=0, validators=[percentage_validator])
-    famille_2_pct = models.IntegerField(verbose_name="%", default=0, validators=[percentage_validator])
-    famille_3_pct = models.IntegerField(verbose_name="%", default=0, validators=[percentage_validator])
-    famille_4_pct = models.IntegerField(verbose_name="%", default=0, validators=[percentage_validator])
-    famille_5_pct = models.IntegerField(verbose_name="%", default=0, validators=[percentage_validator])
+    famille_1_pct = models.IntegerField(verbose_name="primaire %", default=0, validators=[percentage_validator])
+    famille_2_pct = models.IntegerField(verbose_name="secondaire %", default=0, validators=[percentage_validator],
+                                        blank=True)
+    famille_3_pct = models.IntegerField(verbose_name="tertiaire %", default=0, validators=[percentage_validator],
+                                        blank=True)
+    famille_4_pct = models.IntegerField(verbose_name="annexe 1 %", default=0, validators=[percentage_validator],
+                                        blank=True)
+    famille_5_pct = models.IntegerField(verbose_name="annexe 2 %", default=0, validators=[percentage_validator],
+                                        blank=True)
 
     notes = models.TextField(verbose_name="Notes", blank=True)
 
