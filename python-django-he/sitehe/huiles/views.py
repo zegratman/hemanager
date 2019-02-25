@@ -20,6 +20,7 @@ def he_view(request):
     # Base objects
     he_list = HuileEssentielle.objects.all()
     ci_list = ContreIndication.objects.all()
+    ci_he_list = None
 
     # Filtering asked
     filtering = request.GET
