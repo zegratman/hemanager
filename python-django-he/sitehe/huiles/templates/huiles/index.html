@@ -14,14 +14,16 @@
 </head>
 <body>
 
+{% load utils %}
+
 <div id="tabs">
-  <ul>
-    <li><a href="#he-list">Liste complète</a></li>
-    <li><a href="#he-search">Recherche</a></li>
-  </ul>
-<div id="he-list">
-{% if he_list %}
-    {% for he in he_list %}
+    <ul>
+        <li><a href="#he-list">Liste complète</a></li>
+        <li><a href="#he-search">Recherche</a></li>
+    </ul>
+    <div id="he-list">
+        {% if he_list %}
+        {% for he in he_list %}
         <h3><a href="/huiles/{{ he.nom }}/">{{ he.nom }}</a></h3>
         <div>
             <p>
@@ -32,68 +34,101 @@
             </p>
             <p>
                 Familles
-                <table id="familles" class="famille-display" style="width:100%">
+            <table id="familles" class="famille-display" style="width:100%">
+                <thead>
+                <tr>
+                    <th>Classe</th>
+                    <th>Nom</th>
+                    <th>Fraction</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Primaire</td>
+                    <td>{{ he.famille_1.nom }}</td>
+                    <td>{{ he.famille_1_pct }}</td>
+                </tr>
+                {% if he_list %}
+                <tr>
+                    <td>Secondaire</td>
+                    <td>{{ he.famille_2.nom }}</td>
+                    <td>{{ he.famille_2_pct }}</td>
+                </tr>
+                <tr>
+                    <td>Troisième</td>
+                    <td>{{ he.famille_3.nom }}</td>
+                    <td>{{ he.famille_3_pct }}</td>
+                </tr>
+                <tr>
+                    <td>Quatrième</td>
+                    <td>{{ he.famille_4.nom }}</td>
+                    <td>{{ he.famille_4_pct }}</td>
+                </tr>
+                <tr>
+                    <td>Cinquième</td>
+                    <td>{{ he.famille_5.nom }}</td>
+                    <td>{{ he.famille_5_pct }}</td>
+                </tr>
+                {% endif %}
+                </tbody>
+            </table>
+            </p>
+            <p>
+                Propriétés
+                <table id="proprietes" class="proprietes-display" style="width:100%">
                     <thead>
                         <tr>
-                            <th>Classe</th>
-                            <th>Nom</th>
-                            <th>Fraction</th>
+                            <th>Propriété</th>
+                            <th>Efficacité</th>
                         </tr>
                     </thead>
                     <tbody>
+                    {% for prop in eff_props|lookup:he.nom %}
                         <tr>
-                            <td>Primaire</td>
-                            <td>{{ he.famille_1.nom }}</td>
-                            <td>{{ he.famille_1_pct }}</td>
+                            <td>{{ prop.nom_prop.nom }}</td>
+                            <td>{{ prop.efficacite }}</td>
                         </tr>
-                        {% if he_list %}
-                        <tr>
-                            <td>Secondaire</td>
-                            <td>{{ he.famille_2.nom }}</td>
-                            <td>{{ he.famille_2_pct }}</td>
-                        </tr>
-                        {% endif %}
+                    {% endfor %}
                     </tbody>
                 </table>
             </p>
         </div>
-    {% endfor %}
-{% else %}
-    <p>Pas d'huiles essentielles disponibles.</p>
-{% endif %}
-</div>
-
-<div id="he-search">
-    <form action="#" id="he-search-form">
-        <fieldset>
-            <legend>Filtres</legend>
-            <label for="contre_indic">Contre Indication</label>
-            <select name="contre_indic" id="contre_indic">
-            {% if ci_list %}
-                 <option value="none">---</option>
-                 {% for ci in ci_list %}
-                 <option value="{{ ci.nom }}">{{ ci.nom }}</option>
-                 {% endfor %}
-            {% endif %}
-            </select>
-            <input type="submit" value="Chercher"></input>
-        </fieldset>
-    </form>
-    {% if ci_he_list %}
-    <fieldset>
-    <legend>Resultats</legend>
-    Total : {{ ci_he_list|length }}
-    <ul>
-        {% for ci_he in ci_he_list %}
-        <li>{{ ci_he.nom_he }}</li>
         {% endfor %}
-    </ul>
-    {% endif %}
-    </fieldset>
-</div>
+        {% else %}
+        <p>Pas d'huiles essentielles disponibles.</p>
+        {% endif %}
+    </div>
+
+    <div id="he-search">
+        <form action="#" id="he-search-form">
+            <fieldset>
+                <legend>Filtres</legend>
+                <label for="contre_indic">Contre Indication</label>
+                <select name="contre_indic" id="contre_indic">
+                    {% if ci_list %}
+                    <option value="none">---</option>
+                    {% for ci in ci_list %}
+                    <option value="{{ ci.nom }}">{{ ci.nom }}</option>
+                    {% endfor %}
+                    {% endif %}
+                </select>
+                <input type="submit" value="Chercher"></input>
+            </fieldset>
+        </form>
+        {% if ci_he_list %}
+        <fieldset>
+            <legend>Resultats</legend>
+            Total : {{ ci_he_list|length }}
+            <ul>
+                {% for ci_he in ci_he_list %}
+                <li>{{ ci_he.nom_he }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </fieldset>
+    </div>
 
 </div>
-
 
 
 </body>
