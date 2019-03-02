@@ -2,11 +2,10 @@ $(document).ready(
 function(){
 
   // Main tabs
-  $("#tabs").tabs({"active": 0});
-
-  var form_array = $('form').serializeArray()
-  if (form_array.length != 0) {
-    $("#tabs").tabs("option", "active", 1);
+  var main_tabs = $("#tabs").tabs({"active": 0});
+  var current_search = $(location).attr('search');
+  if (current_search != "") {
+    main_tabs.tabs({"active": 1});
   }
 
   // Main accordion
