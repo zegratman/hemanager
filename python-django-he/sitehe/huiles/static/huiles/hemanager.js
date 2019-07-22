@@ -10,7 +10,9 @@ function(){
 
   // Main accordion
   $("#he-list").accordion({
-      heightStyle: "content"
+      heightStyle: "content",
+      active: false,
+      collapsible: true
   });
 
   // Tableaux des familles
