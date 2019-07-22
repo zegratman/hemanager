@@ -5,4 +5,4 @@ services:
     image: hemanager
     restart: always
     ports:
-    - "8000:8000"
+    - "2506:2506"

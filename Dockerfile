@@ -1,9 +1,9 @@
 FROM python:2.7-alpine
 RUN apk add build-base jpeg-dev zlib-dev sqlite
 ENV LIBRARY_PATH=/lib:/usr/lib
-ADD python-django-he /code
+RUN mkdir -p /code/sitehe/
 WORKDIR /code/sitehe/
-RUN pip install Django==1.11.22
-RUN pip install Pillow==6.0.0
-EXPOSE 8000
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+RUN pip install Django==1.11.22 Pillow==6.0.0
+ADD python-django-he /code
+EXPOSE 2506
+CMD ["python", "manage.py", "runserver", "0.0.0.0:2506"]
