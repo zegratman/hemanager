@@ -4,7 +4,7 @@ Projet de gestion des huiles essentielles
 
 ## Technologies utilisées
 
-* Gestion du DM : Django 1.11.10
+* Gestion du DM : Django 1.11.22
 * Visualisation : jQuery-UI 1.12.1
 
 ## Gestion du projet
