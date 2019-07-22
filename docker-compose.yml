@@ -2,8 +2,7 @@ version: "3"
 
 services:
   hemanager:
-    build: .
+    image: hemanager
     restart: always
     ports:
     - "8000:8000"
-
