@@ -108,7 +108,11 @@
                     {% if ci_list %}
                     <option value="none">---</option>
                     {% for ci in ci_list %}
+                    {% if contre_indic_filter == ci.nom %}
+                    <option value="{{ ci.nom }}" selected="selected">{{ ci.nom }}</option>
+                    {% else %}
                     <option value="{{ ci.nom }}">{{ ci.nom }}</option>
+                    {% endif %}
                     {% endfor %}
                     {% endif %}
                 </select>
@@ -117,15 +121,15 @@
         </form>
         {% if ci_he_list %}
         <fieldset>
-            <legend>Resultats</legend>
+            <legend>Résultats</legend>
             Total : {{ ci_he_list|length }}
             <ul>
                 {% for ci_he in ci_he_list %}
                 <li>{{ ci_he.nom_he }}</li>
                 {% endfor %}
             </ul>
-            {% endif %}
         </fieldset>
+        {% endif %}
     </div>
 
 </div>

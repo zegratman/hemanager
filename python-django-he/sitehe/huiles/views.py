@@ -33,6 +33,9 @@ def he_view(request):
         ci_he_list = ContreIndicationHE.objects.filter(nom_contre_indication=filtering.get('contre_indic'))
 
     context = {'he_list': he_list, 'ci_list': ci_list, 'ci_he_list': ci_he_list, 'eff_props': eff_props}
+    if filtering and filtering.has_key('contre_indic'):
+        context['contre_indic_filter'] = filtering.get('contre_indic')
+
     return render(request, 'huiles/index.html', context)
 
 
