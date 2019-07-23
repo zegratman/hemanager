@@ -6,6 +6,8 @@ from django.shortcuts import render, get_object_or_404
 
 from models import HuileEssentielle, ContreIndication, ContreIndicationHE, ProprieteEffective, Propriete
 
+import urllib
+
 
 # Create your views here.
 
@@ -60,6 +62,6 @@ def he_view(request):
 
 
 def he_detail(request, he_nom):
-    he = get_object_or_404(HuileEssentielle, pk=he_nom)
+    he = get_object_or_404(HuileEssentielle, pk=urllib.unquote(he_nom))
     context = {'huile': he}
     return render(request, 'huiles/huile.html', context)
