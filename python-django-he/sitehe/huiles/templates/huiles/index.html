@@ -129,6 +129,19 @@
                     {% endfor %}
                     {% endif %}
                 </select>
+                <label for="family">Famille</label>
+                <select name="family" id="family">
+                    {% if family_list %}
+                    <option value="none">---</option>
+                    {% for family in family_list %}
+                    {% if family_filter == family.nom %}
+                    <option value="{{ family.nom }}" selected="selected">{{ family.nom }}</option>
+                    {% else %}
+                    <option value="{{ family.nom }}">{{ family.nom }}</option>
+                    {% endif %}
+                    {% endfor %}
+                    {% endif %}
+                </select>
                 <input type="submit" value="Chercher"/>
             </fieldset>
         </form>
