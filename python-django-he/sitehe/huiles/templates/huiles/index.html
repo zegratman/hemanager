@@ -27,7 +27,7 @@
         <h3><a href="/huiles/{{ he.nom }}/">{{ he.nom }}</a></h3>
         <div>
             <p>
-                Nom : {{ he.nom }} (alt. {{ he.nom_alternatif }})
+                Nom : <a href="/huiles/{{ he.nom }}/">{{ he.nom }}</a> (alt. {{ he.nom_alternatif }})
             </p>
             <p>
                 Prix : {{ he.prix }} &euro;
@@ -116,16 +116,29 @@
                     {% endfor %}
                     {% endif %}
                 </select>
-                <input type="submit" value="Chercher"></input>
+                <label for="property">Propriété</label>
+                <select name="property" id="property">
+                    {% if prop_list %}
+                    <option value="none">---</option>
+                    {% for prop in prop_list %}
+                    {% if prop_filter == prop.nom %}
+                    <option value="{{ prop.nom }}" selected="selected">{{ prop.nom }}</option>
+                    {% else %}
+                    <option value="{{ prop.nom }}">{{ prop.nom }}</option>
+                    {% endif %}
+                    {% endfor %}
+                    {% endif %}
+                </select>
+                <input type="submit" value="Chercher"/>
             </fieldset>
         </form>
-        {% if ci_he_list %}
+        {% if filtered_list %}
         <fieldset>
             <legend>Résultats</legend>
-            Total : {{ ci_he_list|length }}
+            Total : {{ filtered_list|length }}
             <ul>
-                {% for ci_he in ci_he_list %}
-                <li>{{ ci_he.nom_he }}</li>
+                {% for filtered in filtered_list %}
+                <li>{{ filtered}}</li>
                 {% endfor %}
             </ul>
         </fieldset>
