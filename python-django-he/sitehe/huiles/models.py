@@ -2,6 +2,8 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.core.exceptions import ValidationError
+from django.utils.translation import gettext_lazy
 
 
 # Create your models here.
@@ -19,6 +21,16 @@ class Famille(models.Model):
 
     def __str__(self):
         return self.__unicode__()
+
+
+def percentage_validator(value):
+    """
+    Validation of a percentage value
+    :param value: the percentage to check
+    :return:
+    """
+    if value < 0 or value > 100:
+        raise ValidationError(gettext_lazy('%(value)s is not a percentage'), params={'value': value})
 
 
 class Propriete(models.Model):
@@ -123,6 +135,16 @@ class HuileEssentielle(models.Model):
     famille_5 = models.ForeignKey(Famille, on_delete=models.CASCADE, verbose_name="Famille annexe 2", blank=True,
                                   related_name="+", null=True)
 
+    famille_1_pct = models.IntegerField(verbose_name="primaire %", default=0, validators=[percentage_validator])
+    famille_2_pct = models.IntegerField(verbose_name="secondaire %", default=0, validators=[percentage_validator],
+                                        blank=True)
+    famille_3_pct = models.IntegerField(verbose_name="tertiaire %", default=0, validators=[percentage_validator],
+                                        blank=True)
+    famille_4_pct = models.IntegerField(verbose_name="annexe 1 %", default=0, validators=[percentage_validator],
+                                        blank=True)
+    famille_5_pct = models.IntegerField(verbose_name="annexe 2 %", default=0, validators=[percentage_validator],
+                                        blank=True)
+
     notes = models.TextField(verbose_name="Notes", blank=True)
 
     def __unicode__(self):
@@ -156,8 +178,6 @@ class ProprieteEffective(models.Model):
 
     def __str__(self):
         return self.__unicode__()
-
-
 
 
 class ContreIndicationHE(models.Model):

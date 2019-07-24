@@ -19,5 +19,5 @@ import views
 
 urlpatterns = [
     url(r'^$', views.he_view, name='he_view'),
-    url(r'^(?P<he_nom>[a-zA-Z\s]+)/$', views.he_detail, name='he_detail'),
+    url(r'^(?P<he_nom>[\w\s]+)/$', views.he_detail, name='he_detail'),
 ]
