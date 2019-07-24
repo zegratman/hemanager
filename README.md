@@ -14,7 +14,6 @@ https://trello.com/b/cPk3Wm7E/he-manager
 ## Historique
 
 - 0.1 :
-  - Fiche détaillée
   - Recherche HE
     - Contre-Indication
     - Propriété
