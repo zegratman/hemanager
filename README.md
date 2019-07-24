@@ -7,11 +7,15 @@ Projet de gestion des huiles essentielles
 * Gestion du DM : Django 1.11.22
 * Visualisation : jQuery-UI 1.12.1
 
-## Gestion du projet
-
-https://trello.com/b/cPk3Wm7E/he-manager
-
 ## Historique
+
+- 0.2 :
+  - Cumul des filtres de recherche
+    - Contre-Indication
+    - Propriété
+  - Auto-complétion sur les filtres
+  - Mise en place de la BD hydrolats
+  - Déploiement image Docker sur le hub
 
 - 0.1 :
   - Recherche HE
