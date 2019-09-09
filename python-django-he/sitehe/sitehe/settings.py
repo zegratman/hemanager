@@ -25,7 +25,8 @@ SECRET_KEY = 'v!f*xfs8x!&7=rk7(lnnpw#rzwivynxa=h(*4@ni#hln$*a#@y'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# FIX GCP DEPLOY ISSUE
+ALLOWED_HOSTS = ['35.205.*', 'localhost', '127.0.0.1']
 
 
 # Application definition
