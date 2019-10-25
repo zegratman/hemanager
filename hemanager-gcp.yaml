@@ -2,19 +2,19 @@
 apiVersion: "apps/v1"
 kind: "Deployment"
 metadata:
-  name: "hemanager-1"
+  name: "hemanager-1.1"
   namespace: "default"
   labels:
-    app: "hemanager-1"
+    app: "hemanager-1.1"
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: "hemanager-1"
+      app: "hemanager-1.1"
   template:
     metadata:
       labels:
-        app: "hemanager-1"
+        app: "hemanager-1.1"
     spec:
       containers:
       - name: "hemanager"
@@ -26,11 +26,11 @@ metadata:
   name: "hemanager-1-hpa"
   namespace: "default"
   labels:
-    app: "hemanager-1"
+    app: "hemanager-1.1"
 spec:
   scaleTargetRef:
     kind: "Deployment"
-    name: "hemanager-1"
+    name: "hemanager-1.1"
     apiVersion: "apps/v1"
   minReplicas: 1
   maxReplicas: 5
