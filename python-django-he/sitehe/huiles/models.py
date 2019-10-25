@@ -211,7 +211,7 @@ class SourceHE(models.Model):
 
 class Caracteriologie(models.Model):
     """
-    ContreIndication
+    Caracteriologie
     """
     identifier = models.IntegerField(verbose_name="ID", primary_key=True, auto_created=True)
     description = models.TextField(blank=True, verbose_name="Description")
