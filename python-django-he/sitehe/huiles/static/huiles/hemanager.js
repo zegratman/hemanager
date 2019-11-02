@@ -37,7 +37,9 @@ function(){
   $('.dataTables_wrapper').css("width","600px")
 
   // Filtering - Contre Indication menu
-  $("#contre_indic").selectmenu();
+  $("select#contre_indic").multiselect();
+  $("select#property").multiselect();
+  $("select#family").multiselect();
 
   // Submit filtering
   $(".he-search input[type=submit]").button();
