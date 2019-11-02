@@ -38,8 +38,8 @@ function(){
 
   // Filtering - Contre Indication menu
   $("select#contre_indic").multiselect();
-  $("select#property").selectmenu();
-  $("select#family").selectmenu();
+  $("select#property").multiselect();
+  $("select#family").multiselect();
 
   // Submit filtering
   $(".he-search input[type=submit]").button();

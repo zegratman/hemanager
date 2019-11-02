@@ -113,6 +113,7 @@
         <form action="#" id="he-search-form">
             <fieldset>
                 <legend>Filtres</legend>
+
                 <label for="contre_indic">Contre Indication</label>
                 <select name="contre_indic" id="contre_indic" multiple="multiple">
                     {% if ci_list %}
@@ -125,9 +126,10 @@
                     {% endif %}
                     {% endfor %}
                     {% endif %}
-                </select>
+                </select><br><br>
+
                 <label for="property">Propriété</label>
-                <select name="property" id="property">
+                <select name="property" id="property" multiple="multiple">
                     {% if prop_list %}
                     <option value="none">---</option>
                     {% for prop in prop_list %}
@@ -138,9 +140,10 @@
                     {% endif %}
                     {% endfor %}
                     {% endif %}
-                </select>
+                </select><br><br>
+
                 <label for="family">Famille</label>
-                <select name="family" id="family">
+                <select name="family" id="family" multiple="multiple">
                     {% if family_list %}
                     <option value="none">---</option>
                     {% for family in family_list %}
@@ -151,8 +154,10 @@
                     {% endif %}
                     {% endfor %}
                     {% endif %}
-                </select>
+                </select><br><br>
+
                 <input type="submit" value="Chercher"/>
+
             </fieldset>
         </form>
         {% if filtered_list %}
