@@ -40,7 +40,7 @@ def he_view(request):
         # CI filtering
         if 'contre_indic' in filtering and filtering.get('contre_indic') != 'none':
             to_be_excluded_list = ContreIndicationHE.objects.filter(
-                nom_contre_indication__exact=filtering.get('contre_indic'))
+                nom_contre_indication__in=filtering.getlist('contre_indic'))
             for excluded in to_be_excluded_list:
                 if excluded.nom_he_id in filtered_list:
                     filtered_list.remove(excluded.nom_he_id)
