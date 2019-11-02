@@ -1,16 +1,26 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+
     <meta charset="UTF-8">
     <title>Liste des Huiles Essentielles</title>
     <link href="https://code.jquery.com/jquery-3.3.1.js"/>
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/ju/jqc-1.12.4/dt-1.10.18/datatables.min.css"/>
 
     {% load static %}
-    <link href="{% static "huiles/jquery-ui-1.12.1.custom/jquery-ui.min.css" %}" rel="stylesheet"/>
-    <script type="text/javascript" src="https://cdn.datatables.net/v/ju/jqc-1.12.4/dt-1.10.18/datatables.min.js"></script>
+    <link href="{% static "huiles/jquery-ui-1.12.1.custom/jquery-ui.min.css" %}" rel="stylesheet"></link>
+    <link href="{% static "huiles/datatable/datatable.min.css" %}" rel="stylesheet"></link>
+    <link href="{% static "huiles/jquery.multiselect/jquery.multiselect.css" %}" rel="stylesheet"></link>
+    <link href="{% static "huiles/jquery.multiselect/jquery.multiselect.filter.css" %}" rel="stylesheet"></link>
+
+    <script src="{% static "huiles/datatable/datatable.min.js" %}"></script>
     <script src="{% static "huiles/jquery-ui-1.12.1.custom/jquery-ui.min.js" %}"></script>
+    <script src="{% static "huiles/jquery.multiselect/jquery.multiselect.js" %}"></script>
+    <script src="{% static "huiles/jquery.multiselect/jquery.multiselect.filter.js" %}"></script>
+    <script src="{% static "huiles/jquery.multiselect/jquery.multiselect.fr.js" %}"></script>
+    <script src="{% static "huiles/jquery.multiselect/jquery.multiselect.filter.fr.js" %}"></script>
+
     <script src="{% static "huiles/hemanager.js" %}"></script>
+
 </head>
 <body>
 
@@ -104,7 +114,7 @@
             <fieldset>
                 <legend>Filtres</legend>
                 <label for="contre_indic">Contre Indication</label>
-                <select name="contre_indic" id="contre_indic">
+                <select name="contre_indic" id="contre_indic" multiple="multiple">
                     {% if ci_list %}
                     <option value="none">---</option>
                     {% for ci in ci_list %}
