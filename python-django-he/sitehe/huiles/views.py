@@ -78,9 +78,9 @@ def he_view(request):
         if 'contre_indic' in filtering:
             context['contre_indic_filters'] = filtering.getlist('contre_indic')
         if 'property' in filtering:
-            context['prop_filter'] = filtering.get('property')
+            context['prop_filters'] = filtering.getlist('property')
         if 'family' in filtering:
-            context['family_filter'] = filtering.get('family')
+            context['family_filters'] = filtering.getlist('family')
 
     return render(request, 'huiles/index.html', context)
 

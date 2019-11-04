@@ -133,7 +133,7 @@
                     {% if prop_list %}
                     <option value="none">---</option>
                     {% for prop in prop_list %}
-                    {% if prop_filter == prop.nom %}
+                    {% if prop.nom in prop_filters %}
                     <option value="{{ prop.nom }}" selected="selected">{{ prop.nom }}</option>
                     {% else %}
                     <option value="{{ prop.nom }}">{{ prop.nom }}</option>
@@ -147,7 +147,7 @@
                     {% if family_list %}
                     <option value="none">---</option>
                     {% for family in family_list %}
-                    {% if family_filter == family.nom %}
+                    {% if family.nom in family_filters %}
                     <option value="{{ family.nom }}" selected="selected">{{ family.nom }}</option>
                     {% else %}
                     <option value="{{ family.nom }}">{{ family.nom }}</option>
