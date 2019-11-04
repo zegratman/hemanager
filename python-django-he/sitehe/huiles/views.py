@@ -76,7 +76,7 @@ def he_view(request):
     if filtering:
         context['filtered_list'] = filtered_list
         if 'contre_indic' in filtering:
-            context['contre_indic_filter'] = filtering.get('contre_indic')
+            context['contre_indic_filters'] = filtering.getlist('contre_indic')
         if 'property' in filtering:
             context['prop_filter'] = filtering.get('property')
         if 'family' in filtering:
