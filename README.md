@@ -1,4 +1,4 @@
-# hemanager
+# hemanager v0.1
 
 Projet de gestion des huiles essentielles
 

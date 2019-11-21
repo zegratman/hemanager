@@ -25,7 +25,8 @@ SECRET_KEY = 'v!f*xfs8x!&7=rk7(lnnpw#rzwivynxa=h(*4@ni#hln$*a#@y'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# FIX GCP DEPLOY ISSUE
+ALLOWED_HOSTS = [os.environ.get('CURRENT_HOST', 'localhost')]
 
 
 # Application definition
