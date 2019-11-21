@@ -1,0 +1,33 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/python:2.7-node
+    branches:
+      only:
+        - master
+        - develop
+        - /release-.*/
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "b7:35:a6:4e:9b:0d:6d:d4:78:1e:9a:97:2a:66:6b:be"
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: false
+          
+      # use a primary image that already has Docker (recommended)
+      # or install it during a build like we do here
+      - run:
+          name: Install Docker client
+          command: |
+            set -x
+            VER="17.03.0-ce"
+            curl -L -o /tmp/docker-$VER.tgz https://download.docker.com/linux/static/stable/x86_64/docker-$VER.tgz
+            tar -xz -C /tmp -f /tmp/docker-$VER.tgz
+            sudo mv /tmp/docker/* /usr/bin
+
+      # build and push Docker image
+      - run: |
+            TAG=v0.1.0
+            docker build -t zegratman/hemanager:$TAG .

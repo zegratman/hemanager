@@ -1,0 +1,8 @@
+version: "3"
+
+services:
+  hemanager:
+    image: hemanager
+    restart: always
+    ports:
+    - "2506:2506"
