@@ -29,5 +29,5 @@ jobs:
 
       # build and push Docker image
       - run: |
-            TAG=0.1.0
+            TAG=v0.1.0
             docker build -t zegratman/hemanager:$TAG .
