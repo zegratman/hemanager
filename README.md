@@ -1,4 +1,4 @@
-# hemanager
+# HEMANAGER
 
 Projet de gestion des huiles essentielles
 
@@ -11,6 +11,7 @@ Projet de gestion des huiles essentielles
 
 - 0.1.1 :
   - 5 minor bug fixes
+  - HE added
 
 - 0.1 :
   - Recherche HE
