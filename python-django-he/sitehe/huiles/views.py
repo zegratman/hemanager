@@ -38,7 +38,7 @@ def remove_props_from(filtering, filtered_list):
     if 'property' in filtering and filtering.get('property') != 'none':
         filtered_list = [he for he in filtered_list if
                          len(ProprieteEffective.objects.filter(nom_he__exact=he).filter(
-                             nom_prop__exact=filtering.get('property'))) > 0]
+                             nom_prop__in=filtering.getlist('property'))) > 0]
     return filtered_list
 
 
@@ -66,6 +66,53 @@ def remove_families_from(filtering, filtered_list):
     return filtered_list
 
 
+def global_filtering(he_list, filtering):
+    """
+    Global filtering based on request content
+    :param he_list:
+    :param filtering:
+    :return:
+    """
+    if filtering:
+        # CI filtering
+        he_list = remove_ci_from(filtering, he_list)
+
+        # Property filtering
+        he_list = remove_props_from(filtering, he_list)
+
+        # Family filtering
+        he_list = remove_families_from(filtering, he_list)
+    return he_list
+
+
+def group_by_prop(filtered_list, filtering, eff_props, context):
+    """
+    Group outputs if filters apply on properties
+    :param filtered_list:
+    :param filtering:
+    :param eff_props:
+    :param context:
+    :return:
+    """
+
+    # storing filters in context
+    properties_in_filter = filtering.getlist('property')
+    context['prop_filters'] = properties_in_filter
+
+    # result dict
+    result = dict()
+
+    for he in filtered_list:
+        effective_props = eff_props[he]
+        for effective_prop in effective_props:
+            if unicode(effective_prop.nom_prop) in properties_in_filter:
+                if effective_prop.nom_prop not in result:
+                    result[effective_prop.nom_prop] = list()
+                result[effective_prop.nom_prop].append(effective_prop)
+    context['he_prop_group'] = result
+    return
+
+
 def he_view(request):
     """
     Main view
@@ -87,19 +134,9 @@ def he_view(request):
 
     # Filtering asked
     filtering = request.GET
-    filtered_list = [he.nom for he in he_list]
-    if filtering:
+    filtered_list = global_filtering([he.nom for he in he_list], filtering)
 
-        # CI filtering
-        filtered_list = remove_ci_from(filtering, filtered_list)
-
-        # Property filtering
-        filtered_list = remove_props_from(filtering, filtered_list)
-
-        # Family filtering
-        filtered_list = remove_families_from(filtering, filtered_list)
-
-    # context in return
+    # context in return : main tab
     context = {'he_list': he_list, 'ci_list': ci_list, 'prop_list': prop_list, 'family_list': famille_list,
                'eff_props': eff_props}
 
@@ -109,7 +146,8 @@ def he_view(request):
         if 'contre_indic' in filtering:
             context['contre_indic_filters'] = filtering.getlist('contre_indic')
         if 'property' in filtering:
-            context['prop_filters'] = filtering.getlist('property')
+            context.pop('filtered_list')
+            group_by_prop(filtered_list, filtering, eff_props, context)
         if 'family' in filtering:
             context['family_filters'] = filtering.getlist('family')
 

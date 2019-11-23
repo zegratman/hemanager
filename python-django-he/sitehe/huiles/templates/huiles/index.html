@@ -171,6 +171,22 @@
             </ul>
         </fieldset>
         {% endif %}
+        {% if he_prop_group %}
+        <fieldset>
+            <legend>Résultats</legend>
+            <ul>
+                {% for prop_nom, prop_effs in he_prop_group.items %}
+                <li>{{ prop_nom}}
+                    <ul>
+                        {% for prop_eff in prop_effs %}
+                        <li>{{ prop_eff.nom_he }} {{ prop_eff.efficacite }} </li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                {% endfor %}
+            </ul>
+        </fieldset>
+        {% endif %}
     </div>
 
 </div>
