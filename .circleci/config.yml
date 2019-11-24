@@ -14,7 +14,6 @@ jobs:
       - checkout
       - setup_remote_docker:
           docker_layer_caching: false
-          
       # use a primary image that already has Docker (recommended)
       # or install it during a build like we do here
       - run:
@@ -26,7 +25,7 @@ jobs:
             tar -xz -C /tmp -f /tmp/docker-$VER.tgz
             sudo mv /tmp/docker/* /usr/bin
 
-      # build and push Docker image
+      # build Docker image
       - run: |
-            TAG=v0.1.0
+            TAG=v0.2.0
             docker build -t zegratman/hemanager:$TAG .

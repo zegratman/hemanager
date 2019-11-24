@@ -4,14 +4,22 @@ Projet de gestion des huiles essentielles
 
 ## Technologies utilisées
 
-* Gestion du DM : Django 1.11.22
+* Gestion du DM : Django 1.11.26
 * Visualisation : jQuery-UI 1.12.1
 
 ## Historique
 
+- 0.2 :
+  - Cumul des filtres de recherche
+    - Contre-Indication
+    - Propriété
+  - Auto-complétion sur les filtres
+  - Mise en place de la BD hydrolats
+  - Déploiement image Docker sur le hub
+  
 - 0.1.1 :
-  - 5 minor bug fixes
-  - HE added
+  - 5 bug mineurs corrigés
+  - nouvelles HE
 
 - 0.1 :
   - Recherche HE
