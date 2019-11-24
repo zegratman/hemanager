@@ -126,7 +126,14 @@
                     {% endif %}
                     {% endfor %}
                     {% endif %}
-                </select><br><br>
+                </select>
+                <!-- List the CI filtered -->
+                {% for ci in ci_list %}
+                {% if ci.nom in contre_indic_filters %}
+                <button disabled=true class="ui-button ui-widget ui-corner-all">{{ ci.nom }}</button>
+                {% endif %}
+                {% endfor %}
+                <br><br>
 
                 <label for="property">Propriété</label>
                 <select name="property" id="property" multiple="multiple">
@@ -140,7 +147,14 @@
                     {% endif %}
                     {% endfor %}
                     {% endif %}
-                </select><br><br>
+                </select>
+                <!-- List the properties filtered -->
+                {% for prop in prop_list %}
+                {% if prop.nom in prop_filters %}
+                <button disabled=true class="ui-button ui-widget ui-corner-all">{{ prop.nom }}</button>
+                {% endif %}
+                {% endfor %}
+                <br><br>
 
                 <label for="family">Famille</label>
                 <select name="family" id="family" multiple="multiple">
@@ -154,7 +168,14 @@
                     {% endif %}
                     {% endfor %}
                     {% endif %}
-                </select><br><br>
+                </select>
+                <!-- List the properties filtered -->
+                {% for family in family_list %}
+                {% if family.nom in family_filters %}
+                <button disabled=true class="ui-button ui-widget ui-corner-all">{{ family.nom }}</button>
+                {% endif %}
+                {% endfor %}
+                <br><br>
 
                 <input type="submit" value="Chercher"/>
 
