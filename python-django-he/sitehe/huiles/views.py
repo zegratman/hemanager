@@ -109,7 +109,13 @@ def group_by_prop(filtered_list, filtering, eff_props, context):
                 if effective_prop.nom_prop not in result:
                     result[effective_prop.nom_prop] = list()
                 result[effective_prop.nom_prop].append(effective_prop)
-    context['he_prop_group'] = result
+
+    # Now sorting each list
+    sorted_result = dict()
+    for nom_prop, props in result.items():
+        sorted_result[nom_prop] = sorted(props, key=lambda x: x.efficacite.count('+'), reverse=True)
+
+    context['he_prop_group'] = sorted_result
     return
 
 
