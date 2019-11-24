@@ -13,8 +13,8 @@ Projet de gestion des huiles essentielles
   - Cumul des filtres de recherche
     - Contre-Indication
     - Propriété
-  - Auto-complétion sur les filtres
-  - Mise en place de la BD hydrolats
+    - Famille
+  - Multifiltrage
   - Déploiement image Docker sur le hub
   
 - 0.1.1 :
