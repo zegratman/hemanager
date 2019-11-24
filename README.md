@@ -1,4 +1,4 @@
-# hemanager
+# HEMANAGER
 
 Projet de gestion des huiles essentielles
 
